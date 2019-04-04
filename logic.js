@@ -47,6 +47,50 @@ document.querySelector("#passive").addEventListener("click", function () {
     }
 })
 
+// 2. Agressive button
+
+document.querySelector("#aggressive").addEventListener("click", function () {
+    if (gamePlaying) {
+        var diceResult = diceRoll();
+        if (diceResult === 1) {
+            scores[activePlayer] += 5;
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspD!";
+            document.querySelector(".reportMain").textContent = "The rolling player drinks!!"
+            gamePlaying = false;
+        } else if (diceResult >= 2 && diceResult <= 4) {
+            scores[activePlayer] += 1;
+            scores[nextPlayer()] += 1;
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
+            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbsp1";
+            document.querySelector(".reportMain").textContent = "Plus 1 serve for rolling and next player"
+            gamePlaying = false;
+        } else if (diceResult === 5) {
+            scores[activePlayer] += 1;
+            scores[nextPlayer()] += 2;
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
+            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbsp2";
+            document.querySelector(".reportMain").textContent = "Plus 1 serve for rolling and two for next player!"
+            gamePlaying = false;
+        } else {
+            scores[nextPlayer()] += 5;
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp-";
+            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspD!";
+            document.querySelector(".reportMain").textContent = "Next player drinks!"
+            gamePlaying = false;
+
+        }
+    } else {
+        nextTurn();
+    }
+})
+
 
 
 
@@ -76,7 +120,7 @@ function nextTurn () {
     for (var i = 0; i < document.querySelectorAll(".track").length; i++){
         document.querySelectorAll(".track")[i].classList.add("dinactive")
     };
-    // Update scores
+    // Update scores internally
     for (var i = 0; i < document.querySelectorAll(".cupServe").length; i++){
         if (scores[i] < 5){
             document.querySelectorAll(".cupServe")[i].textContent = scores[i]
@@ -92,8 +136,9 @@ function nextTurn () {
     for (var i = 0; i < document.querySelectorAll(".btn").length; i++){
         document.querySelectorAll(".btn")[i].classList.remove("playerFill-" + activePlayer);
         }
-    // Set new active player an UI
+    // Set new active player
     activePlayer = nextPlayer();
+    // Update active player UI
     document.querySelector(".player-" + activePlayer).classList.toggle("active");
     for (var i = 0; i < document.querySelectorAll(".btn").length; i++){
         document.querySelectorAll(".btn")[i].classList.add("playerFill-" + activePlayer);
