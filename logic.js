@@ -91,6 +91,43 @@ document.querySelector("#aggressive").addEventListener("click", function () {
     }
 })
 
+// 3. Swap button
+
+document.querySelector("#swap").addEventListener("click", function () {
+    if (gamePlaying) {
+        var diceResult = diceRoll();
+        if (diceResult === 1 || diceResult === 2) {
+            scores[activePlayer] += 5;
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspD!";
+            document.querySelector(".reportMain").textContent = "The rolling player drinks!!"
+            gamePlaying = false;
+        } else if (diceResult === 3 || diceResult === 4) {
+            var temp = scores[lastPlayer()];
+            scores[lastPlayer()] = scores[activePlayer];
+            scores[activePlayer] = temp;
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".track-p" + lastPlayer()).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
+            document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + &nbspS!";
+            document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the left!"
+            gamePlaying = false;
+        }  else {
+            var temp = scores[nextPlayer()];
+            scores[nextPlayer()] = scores[activePlayer];
+            scores[activePlayer] = temp;
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
+            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspS!";
+            document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the right!"
+            gamePlaying = false;
+        }
+    } else {
+        nextTurn();
+    }
+})
+
 
 
 
@@ -113,6 +150,16 @@ function nextPlayer () {
     nextP = activePlayer + 1;
  } 
  return nextP;
+}
+
+function lastPlayer () {
+    var lastP;
+    if (activePlayer - 1 === -1){
+        lastP = 3;
+    } else {
+        lastP = activePlayer -1
+    }
+    return lastP;
 }
 
 function nextTurn () {
