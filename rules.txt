@@ -1,0 +1,20 @@
+Pasivo: 1 -> Proll + 2
+	2 - 4 -> No serve
+	5 -> Proll + 1
+	6 -> Proll + 1, Pnext + 1
+ 
+Agresivo: 1 -> Proll Drink
+	  2 - 4 ->  Proll + 1, Pnext + 1
+	  5 -> Proll + 1, Pnext + 2
+	  6 -> Pnext drink
+
+Swap: 1 -> Proll drink
+      2 -> 
+
+Uppps: 
+      1 -> All drink
+      2 -> full swipe rigth
+      3 -> full swipe left
+      4 -> All + 1
+      5 -> all + 1
+ 
