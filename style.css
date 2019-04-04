@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; */
+    box-sizing: border-box;
 }
 
 body {
@@ -91,12 +91,12 @@ body {
 }
 
 .turnScore-p0, .turnScore-p1,
-.turnScore-p3, .turnScore-p4 {
+.turnScore-p2, .turnScore-p3 {
     display: inline-block;
     transform: translateY(-20%);
     font-size: 1.2rem;
     font-weight: 600;
-    margin-left: 3px;
+    margin-left: 2px;
 }
 
 .dinactive {
@@ -127,6 +127,8 @@ body {
     height: 30%;
     padding: 0 30px;
 }
+
+button * {pointer-events: none;}
 
 button {
     transition: transform 0.3s;
