@@ -187,7 +187,7 @@ document.querySelector("#chaos").addEventListener("click", function () {
                     document.querySelector(".track-p" + i).classList.toggle("dinactive");
                     document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
                 }
-                document.querySelector(".reportMain").textContent = "All players swap right!!"
+                document.querySelector(".reportMain").textContent = "All players swap left!!"
                 gamePlaying = false;
             } else if (diceResult === 5) {
                 var temp = scores[0];
@@ -199,7 +199,7 @@ document.querySelector("#chaos").addEventListener("click", function () {
                     document.querySelector(".track-p" + i).classList.toggle("dinactive");
                     document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
                 };
-                document.querySelector(".reportMain").textContent = "All players swap left!!"
+                document.querySelector(".reportMain").textContent = "All players swap right!!"
                 gamePlaying = false;
             } else {
                 for (var i = 0; i < scores.length; i++ ){
@@ -212,7 +212,7 @@ document.querySelector("#chaos").addEventListener("click", function () {
                     document.querySelector(".turnScore-p" + i).innerHTML = " + &nbsp2";
                     };
                     document.querySelector(".reportMain").textContent = "Plus two serves for all players except rolling player!!"
-                gamePlaying = false;
+                    gamePlaying = false;
                 };
             }
         } else {
