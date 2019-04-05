@@ -51,7 +51,7 @@ body {
 }
 
 .player-2.active {
-    background-color: #FEBE41;
+    background-color: #A0522D;
     color: #fff;
 }
 
@@ -187,14 +187,19 @@ button:active { transform: translateY(2px); }
 }
 
 .btnIconsLow {
-    filter: invert(99%) sepia(99%) saturate(2%) hue-rotate(251deg) brightness(105%) contrast(101%);
+    filter: invert(84%) sepia(14%) saturate(530%) hue-rotate(179deg) brightness(92%) contrast(87%);
     height: 50%;
+}
+
+.perkUp {
+    filter: invert(82%) sepia(37%) saturate(2444%) hue-rotate(0deg) brightness(103%) contrast(108%);
 }
 
 .playerFill-0 { background-color: #cf3721; }
 
 .playerFill-1 { background-color: #31A9B8; }
 
-.playerFill-2 { background-color: #FEBE41; }
+.playerFill-2 { background-color: #A0522D; }
 
 .playerFill-3 { background-color: #258039; }
+

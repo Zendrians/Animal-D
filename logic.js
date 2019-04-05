@@ -1,13 +1,8 @@
 var scores = [0,0,0,0];
 var activePlayer = 0;
 var gamePlaying = true;
-
-// 0. Dice next player button
-document.querySelector(".diceScreen").addEventListener("click", function(){
-    if (!gamePlaying){
-        nextTurn();
-    }
-})
+var revenge = 0;
+var unicorn = false;
 
 
 // 1. Passive button
@@ -22,7 +17,7 @@ document.querySelector("#passive").addEventListener("click", function () {
             gamePlaying = false;
         } else if (diceResult >= 2 && diceResult <= 4) {
             document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp-";
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
             document.querySelector(".reportMain").textContent = "No serve!!";
             gamePlaying = false;
         } else if (diceResult === 5) {
@@ -80,50 +75,85 @@ document.querySelector("#aggressive").addEventListener("click", function () {
             scores[nextPlayer()] += 5;
             document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
             document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp-";
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
             document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspD!";
             document.querySelector(".reportMain").textContent = "Next player drinks!"
             gamePlaying = false;
-
-        }
+        };
+        revenge = 2;
+        console.log(revenge);
     } else {
         nextTurn();
+        
     }
 })
 
 // 3. Swap button
 
 document.querySelector("#swap").addEventListener("click", function () {
-    if (gamePlaying) {
-        var diceResult = diceRoll();
-        if (diceResult === 1 || diceResult === 2) {
-            scores[activePlayer] += 5;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspD!";
-            document.querySelector(".reportMain").textContent = "The rolling player drinks!!"
-            gamePlaying = false;
-        } else if (diceResult === 3 || diceResult === 4) {
-            var temp = scores[lastPlayer()];
-            scores[lastPlayer()] = scores[activePlayer];
-            scores[activePlayer] = temp;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".track-p" + lastPlayer()).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
-            document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + &nbspS!";
-            document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the left!"
-            gamePlaying = false;
-        }  else {
-            var temp = scores[nextPlayer()];
-            scores[nextPlayer()] = scores[activePlayer];
-            scores[activePlayer] = temp;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
-            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspS!";
-            document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the right!"
-            gamePlaying = false;
+    if (scores[activePlayer] === 4) {
+        if (gamePlaying) {
+            var diceResult = diceRoll();
+            if (diceResult === 1 || diceResult === 2) {
+                scores[activePlayer] += 5;
+                document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspD!";
+                document.querySelector(".reportMain").textContent = "The rolling player drinks!!"
+                gamePlaying = false;
+            } else if (diceResult === 3 || diceResult === 4) {
+                var temp = scores[lastPlayer()];
+                scores[lastPlayer()] = scores[activePlayer];
+                scores[activePlayer] = temp;
+                document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+                document.querySelector(".track-p" + lastPlayer()).classList.toggle("dinactive");
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
+                document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + &nbspS!";
+                document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the left!"
+                gamePlaying = false;
+            } else {
+                var temp = scores[nextPlayer()];
+                scores[nextPlayer()] = scores[activePlayer];
+                scores[activePlayer] = temp;
+                document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+                document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
+                document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspS!";
+                document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the right!"
+                gamePlaying = false;
+            }
+        } else {
+            nextTurn();
         }
-    } else {
+    } else if (!gamePlaying) {
+        nextTurn();
+    }
+})
+
+// 4. revenge button
+
+document.querySelector("#revenge").addEventListener("click", function () {
+    if (revenge === 1) {
+        if (gamePlaying) {
+            var diceResult = diceRoll();
+            if (diceResult >= 1 && diceResult <= 4) {
+                scores[activePlayer] += 1;
+                document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
+                document.querySelector(".reportMain").textContent = "Plus one serve for the rolling player!!"
+                gamePlaying = false;
+            } else {
+                scores[lastPlayer()] += 5;
+                document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+                document.querySelector(".track-p" + lastPlayer()).classList.toggle("dinactive");
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
+                document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + &nbspD!";
+                document.querySelector(".reportMain").textContent = "Revenge! last turn player drinks!"
+                gamePlaying = false;
+            }
+        } else {
+            nextTurn();
+        }
+    } else if (!gamePlaying) {
         nextTurn();
     }
 })
@@ -167,8 +197,21 @@ function nextTurn () {
     for (var i = 0; i < document.querySelectorAll(".track").length; i++){
         document.querySelectorAll(".track")[i].classList.add("dinactive")
     };
-    // Update scores internally
-    for (var i = 0; i < document.querySelectorAll(".cupServe").length; i++){
+    // Reset report
+    document.querySelector(".reportMain").textContent = "Time to Roll!!!";
+    // Clean active player UI
+    document.querySelector(".player-" + activePlayer).classList.toggle("active");
+    for (var i = 0; i < document.querySelectorAll(".btn").length; i++){
+        document.querySelectorAll(".btn")[i].classList.remove("playerFill-" + activePlayer);
+        };
+    // Clear perks
+    for (var i = 0; i < document.querySelectorAll(".btnIconsLow").length; i++){
+        document.querySelectorAll(".btnIconsLow")[i].classList.remove("perkUp");
+        };
+    // Set new active player
+    activePlayer = nextPlayer();
+    // Update scores 
+    for (var i = 0; i < scores.length; i++){
         if (scores[i] < 5){
             document.querySelectorAll(".cupServe")[i].textContent = scores[i]
         } else {
@@ -176,20 +219,23 @@ function nextTurn () {
             scores[i] = 0;
         }
     };
-    // Reset report
-    document.querySelector(".reportMain").textContent = "Time to Roll!!!";
-    // Clean active player UI
-    document.querySelector(".player-" + activePlayer).classList.toggle("active");
-    for (var i = 0; i < document.querySelectorAll(".btn").length; i++){
-        document.querySelectorAll(".btn")[i].classList.remove("playerFill-" + activePlayer);
-        }
-    // Set new active player
-    activePlayer = nextPlayer();
     // Update active player UI
     document.querySelector(".player-" + activePlayer).classList.toggle("active");
     for (var i = 0; i < document.querySelectorAll(".btn").length; i++){
         document.querySelectorAll(".btn")[i].classList.add("playerFill-" + activePlayer);
-        }
+        };
+    // Evaluate perks
+    if (scores[activePlayer] === 4){
+        document.querySelector("#swapIcon").classList.toggle("perkUp");
+    };
+    if (revenge > 0){
+        revenge -= 1;
+    }
+    if (revenge === 1){
+        document.querySelector("#revengeIcon").classList.toggle("perkUp");
+    }
+    
+
     // Resume gameplay
     gamePlaying = true;
 
