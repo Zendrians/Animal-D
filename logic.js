@@ -15,16 +15,16 @@ document.querySelector("#passive").addEventListener("click", function () {
             document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp2";
             document.querySelector(".reportMain").textContent = "Plus two serves for the rolling player!!"
             gamePlaying = false;
-        } else if (diceResult >= 2 && diceResult <= 4) {
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
-            document.querySelector(".reportMain").textContent = "No serve!!";
-            gamePlaying = false;
-        } else if (diceResult === 5) {
+        } else if (diceResult === 2) {
             scores[activePlayer] += 1;
             document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
             document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
             document.querySelector(".reportMain").textContent = "Plus one serve for the rolling player!!"
+            gamePlaying = false;
+        } else if (diceResult >= 3 && diceResult <= 5) {
+            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
+            document.querySelector(".reportMain").textContent = "No serve!!";
             gamePlaying = false;
         } else {
             scores[activePlayer] += 1;
@@ -81,7 +81,6 @@ document.querySelector("#aggressive").addEventListener("click", function () {
             gamePlaying = false;
         };
         revenge = 2;
-        console.log(revenge);
     } else {
         nextTurn();
         
@@ -158,6 +157,73 @@ document.querySelector("#revenge").addEventListener("click", function () {
     }
 })
 
+document.querySelector("#chaos").addEventListener("click", function () {
+    if (unicorn) {
+        if (gamePlaying) {
+            var diceResult = diceRoll();
+            if (diceResult === 1) {
+                for (var i = 0; i < scores.length; i++ ){
+                scores[i] += 5;
+                document.querySelector(".track-p" + i).classList.toggle("dinactive");
+                document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspD!";
+            };
+                document.querySelector(".reportMain").textContent = "All players drink!!"
+                gamePlaying = false;
+            } else if (diceResult === 2 || diceResult === 3) {
+                for (var i = 0; i < scores.length; i++ ){
+                    scores[i] += 1;
+                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
+                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbsp1";
+                };
+                    document.querySelector(".reportMain").textContent = "Plus one serve for all players!!"
+                    gamePlaying = false;
+            } else if (diceResult === 4) {
+                var temp = scores[0];
+                scores[0] = scores[1];
+                scores[1] = scores[2];
+                scores[2] = scores[3];
+                scores[3] = temp;
+                for (var i = 0; i < scores.length; i++ ){
+                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
+                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
+                }
+                document.querySelector(".reportMain").textContent = "All players swap right!!"
+                gamePlaying = false;
+            } else if (diceResult === 5) {
+                var temp = scores[0];
+                scores[0] = scores[3];
+                scores[3] = scores[2];
+                scores[2] = scores[1];
+                scores[1] = temp;
+                for (var i = 0; i < scores.length; i++ ){
+                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
+                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
+                };
+                document.querySelector(".reportMain").textContent = "All players swap left!!"
+                gamePlaying = false;
+            } else {
+                for (var i = 0; i < scores.length; i++ ){
+                    if (i === activePlayer) {
+                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
+                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbsp0";
+                    } else {
+                    scores[i] += 2;
+                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
+                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbsp2";
+                    };
+                    document.querySelector(".reportMain").textContent = "Plus two serves for all players except rolling player!!"
+                gamePlaying = false;
+                };
+            }
+        } else {
+            nextTurn();
+        }
+    } else if (!gamePlaying) {
+        nextTurn();
+    }
+})
+
+
 
 
 
@@ -169,6 +235,10 @@ document.querySelector("#revenge").addEventListener("click", function () {
 function diceRoll () {
     var result = Math.floor(Math.random() * 6) +1;
     document.querySelector(".dice").data="./SVG/Dice/dice-" + result +".svg"; 
+    return result;
+}
+function unicornRoll () {
+    var result = Math.floor(Math.random() * 10) +1;
     return result;
 }
 
@@ -226,17 +296,21 @@ function nextTurn () {
         };
     // Evaluate perks
     if (scores[activePlayer] === 4){
-        document.querySelector("#swapIcon").classList.toggle("perkUp");
+        document.querySelector("#swapIcon").classList.add("perkUp");
     };
     if (revenge > 0){
         revenge -= 1;
-    }
+    };
     if (revenge === 1){
-        document.querySelector("#revengeIcon").classList.toggle("perkUp");
+        document.querySelector("#revengeIcon").classList.add("perkUp");
+    };
+    var unicornDice = unicornRoll();
+    if (unicornDice === 10){
+        unicorn = true;
+        document.querySelector("#chaosIcon").classList.add("perkUp");
+    } else {
+        unicorn = false;
     }
-    
-
     // Resume gameplay
     gamePlaying = true;
-
 }

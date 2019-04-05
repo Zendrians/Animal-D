@@ -8,17 +8,19 @@ Agresivo: 1 -> Proll Drink
 	  5 -> Proll + 1, Pnext + 2
 	  6 -> Pnext drink
 
-Swap: 1 - 2 -> Proll drink
+Swap: (only at 4 serves)
+ 1 - 2 -> Proll drink
       3 - 4 -> swap left;
       5 - 6 -> swap right; 
 
-Revenge: 1 - 2 > Proll + 3
+Revenge: (only after aggressive)
+ 1 - 2 > Proll + 3
 	 4 - 6 -> Pleft drinks
 
-Uppps: 
+Uppps: (1 in 10 chance) 
       1 -> All drink
-      2 -> full swipe rigth
-      3 -> full swipe left
-      4 - 5 -> All + 1
-      6 -> Rolling player drinks 
+      2 - 3 -> All + 1
+      4 -> full swipe rigth
+      5 -> full swipe left
+      6 -> + 2 for all exept roling player 
  
