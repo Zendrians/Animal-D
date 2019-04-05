@@ -157,6 +157,8 @@ document.querySelector("#revenge").addEventListener("click", function () {
     }
 })
 
+// 5. Upppsss button
+
 document.querySelector("#chaos").addEventListener("click", function () {
     if (unicorn) {
         if (gamePlaying) {
@@ -222,13 +224,6 @@ document.querySelector("#chaos").addEventListener("click", function () {
         nextTurn();
     }
 })
-
-
-
-
-
-
-
 
 
 // Functions Corner

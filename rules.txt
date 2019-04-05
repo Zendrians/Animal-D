@@ -1,26 +1,49 @@
-Pasivo: 1 -> Proll + 2
-	2 - 4 -> No serve
-	5 -> Proll + 1
-	6 -> Proll + 1, Pnext + 1
+Game flow:
+
+- Each player has a cup that can hold up to 5 serves.
+- The games plays in turns, which flow to the right of the player. 
+- During each turn a player can choose between 2 types of rolls (passive and agressive)
+  or any of the 3 perks (Swap Frog, Revenge Gorilla or Uppps Unicorn) if available.
+- The player drinks if his cup serve reaches 5 or if he gets a drink command
+  (case in which he will only drink his current cup, not a full one). 
+
+Basic rolls:
+
+Passive:
+
+	1 -> 	 Rolling player + 2 serves
+	2 -> 	 Rolling player + 1 serve
+	3 - 5 -> No serve, nothing happens
+	6 -> 	 One serve for rolling player and next player 
  
-Agresivo: 1 -> Proll Drink
-	  2 - 4 ->  Proll + 1, Pnext + 1
-	  5 -> Proll + 1, Pnext + 2
-	  6 -> Pnext drink
+Aggressive:
 
-Swap: (only at 4 serves)
- 1 - 2 -> Proll drink
-      3 - 4 -> swap left;
-      5 - 6 -> swap right; 
+	1 -> 	 Rolling player drinks
+	2 - 4 -> One serve for rolling player and next player 
+	5 -> 	 One serve for rolling player and two for next
+	6 -> 	 Next player drinks
 
-Revenge: (only after aggressive)
- 1 - 2 > Proll + 3
-	 4 - 6 -> Pleft drinks
+Perk rolls:
 
-Uppps: (1 in 10 chance) 
-      1 -> All drink
-      2 - 3 -> All + 1
-      4 -> full swipe rigth
-      5 -> full swipe left
-      6 -> + 2 for all exept roling player 
+Swap:
+Available condition: 4 serves on player cup
+ 
+	1 - 2 -> Rolling player drinks
+    	3 - 4 -> Swap with the player to the left
+      	5 - 6 -> Swap with the player to the right
+
+Revenge:
+Available condition: Last player rolled aggressive
+	
+	1 - 4 -> One serve for rolling player
+	4 - 6 -> Last player drinks
+
+Uppps:
+Availble condition: Secret
+ 
+      	1 -> 	 All players drink
+      	2 - 3 -> One serve for all players
+      	4 -> 	 All players swap with their player to the left 
+      	5 -> 	 All players swap with their player to the right
+      	6 -> 	 two 2 serves for all players exept the roling player 
  
