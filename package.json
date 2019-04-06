@@ -1,0 +1,14 @@
+{
+  "name": "animal-drinking",
+  "version": "1.0.0",
+  "description": "Alpha version of the game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Arango",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
