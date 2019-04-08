@@ -82,6 +82,7 @@ body {
     width: 25%;
     padding: 10px 10px;
     display: inline-block;
+    text-align: center;
 }
 
 #subFox, #subPig,
@@ -96,7 +97,6 @@ body {
     transform: translateY(-20%);
     font-size: 1.2rem;
     font-weight: 600;
-    margin-left: 2px;
 }
 
 .dinactive {

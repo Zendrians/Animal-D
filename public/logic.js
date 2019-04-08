@@ -7,6 +7,7 @@ var unicorn = false;
 //DOM
 var reportMain = document.querySelector(".reportMain")
 
+// BUTTONS
 
 // 1. Passive button
 document.querySelector("#passive").addEventListener("click", function () {
@@ -22,7 +23,7 @@ document.querySelector("#passive").addEventListener("click", function () {
             gamePlaying = false;
         } else if (diceResult >= 3 && diceResult <= 5) {
             document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
+            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + 0";
             reportMain.textContent = "No serve!!";
             gamePlaying = false;
         } else {
@@ -40,7 +41,7 @@ document.querySelector("#passive").addEventListener("click", function () {
 
 document.querySelector("#aggressive").addEventListener("click", function () {
     if (gamePlaying) {
-        var diceResult = diceRoll();
+      var diceResult = diceRoll();
         if (diceResult === 1) {
             rollingDrinks(5, activePlayer);
             reportMain.textContent = "The rolling player drinks!!"
@@ -86,8 +87,8 @@ document.querySelector("#swap").addEventListener("click", function () {
                 scores[activePlayer] = temp;
                 document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
                 document.querySelector(".track-p" + lastPlayer()).classList.toggle("dinactive");
-                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
-                document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + &nbspS!";
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + S!";
+                document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + S!";
                 reportMain.textContent = "Rolling player swaps drinks to the left!"
                 gamePlaying = false;
             } else {
@@ -96,8 +97,8 @@ document.querySelector("#swap").addEventListener("click", function () {
                 scores[activePlayer] = temp;
                 document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
                 document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
-                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
-                document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspS!";
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + S!";
+                document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + S!";
                 reportMain.textContent = "Rolling player swaps drinks to the right!"
                 gamePlaying = false;
             }
@@ -159,7 +160,7 @@ document.querySelector("#chaos").addEventListener("click", function () {
                 scores[3] = temp;
                 for (var i = 0; i < scores.length; i++ ){
                     document.querySelector(".track-p" + i).classList.toggle("dinactive");
-                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
+                    document.querySelector(".turnScore-p" + i).innerHTML = " + S!";
                 }
                 reportMain.textContent = "All players swap left!!"
                 gamePlaying = false;
@@ -171,7 +172,7 @@ document.querySelector("#chaos").addEventListener("click", function () {
                 scores[1] = temp;
                 for (var i = 0; i < scores.length; i++ ){
                     document.querySelector(".track-p" + i).classList.toggle("dinactive");
-                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
+                    document.querySelector(".turnScore-p" + i).innerHTML = " + S!";
                 };
                 reportMain.textContent = "All players swap right!!"
                 gamePlaying = false;
@@ -203,12 +204,12 @@ function rollingDrinks (serve, player) {
             if (serve === 5){
                 serve = "D!"
             }
-            document.querySelector(".turnScore-p" + player).innerHTML = " + &nbsp" + serve;
+            document.querySelector(".turnScore-p" + player).innerHTML = " + " + serve;
 } 
 
 
+// FUNCTIONS CORNER
 
-// Functions Corner
 function diceRoll () {
     var result = Math.floor(Math.random() * 6) +1;
     document.querySelector(".dice").data="./SVG/Dice/dice-" + result +".svg"; 
@@ -245,7 +246,7 @@ function nextTurn () {
         document.querySelectorAll(".track")[i].classList.add("dinactive")
     };
     // Reset report
-    document.querySelector(".reportMain").textContent = "Time to Roll!!!";
+    reportMain.textContent = "Time to Roll!!!";
     // Clean active player UI
     document.querySelector(".player-" + activePlayer).classList.toggle("active");
     for (var i = 0; i < document.querySelectorAll(".btn").length; i++){
