@@ -286,7 +286,7 @@ function nextTurn () {
         unicorn = true;
         document.querySelector("#chaosIcon").classList.add("perkUp");
     } else {
-        unicorn = true;
+        unicorn = false;
     }
     // Resume gameplay
     gamePlaying = true;
