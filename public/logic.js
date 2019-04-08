@@ -4,38 +4,32 @@ var gamePlaying = true;
 var revenge = 0;
 var unicorn = false;
 
+//DOM
+var reportMain = document.querySelector(".reportMain")
+
 
 // 1. Passive button
 document.querySelector("#passive").addEventListener("click", function () {
     if (gamePlaying) {
         var diceResult = diceRoll();
         if (diceResult === 1) {
-            scores[activePlayer] += 2;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp2";
-            document.querySelector(".reportMain").textContent = "Plus two serves for the rolling player!!"
+            rollingDrinks(2, activePlayer);
+            reportMain.textContent = "Plus two serves for the rolling player!!"
             gamePlaying = false;
         } else if (diceResult === 2) {
-            scores[activePlayer] += 1;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
-            document.querySelector(".reportMain").textContent = "Plus one serve for the rolling player!!"
+            rollingDrinks(1, activePlayer);
+            reportMain.textContent = "Plus one serve for the rolling player!!"
             gamePlaying = false;
         } else if (diceResult >= 3 && diceResult <= 5) {
             document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
             document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
-            document.querySelector(".reportMain").textContent = "No serve!!";
+            reportMain.textContent = "No serve!!";
             gamePlaying = false;
         } else {
-            scores[activePlayer] += 1;
-            scores[nextPlayer()] += 1;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
-            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbsp1";
-            document.querySelector(".reportMain").textContent = "Plus 1 serve for rolling and next player"
+            rollingDrinks(1, activePlayer);
+            rollingDrinks(1, nextPlayer());
+            reportMain.textContent = "Plus one serve for rolling and next player!!"
             gamePlaying = false;
-
         }
     } else {
         nextTurn();
@@ -48,36 +42,23 @@ document.querySelector("#aggressive").addEventListener("click", function () {
     if (gamePlaying) {
         var diceResult = diceRoll();
         if (diceResult === 1) {
-            scores[activePlayer] += 5;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspD!";
-            document.querySelector(".reportMain").textContent = "The rolling player drinks!!"
+            rollingDrinks(5, activePlayer);
+            reportMain.textContent = "The rolling player drinks!!"
             gamePlaying = false;
         } else if (diceResult >= 2 && diceResult <= 4) {
-            scores[activePlayer] += 1;
-            scores[nextPlayer()] += 1;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
-            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbsp1";
-            document.querySelector(".reportMain").textContent = "Plus 1 serve for rolling and next player"
+            rollingDrinks(1, activePlayer);
+            rollingDrinks(1, nextPlayer());
+            reportMain.textContent = "Plus one serve for rolling and next player"
             gamePlaying = false;
         } else if (diceResult === 5) {
-            scores[activePlayer] += 1;
-            scores[nextPlayer()] += 2;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
-            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbsp2";
-            document.querySelector(".reportMain").textContent = "Plus 1 serve for rolling and two for next player!"
+            rollingDrinks(1, activePlayer);
+            rollingDrinks(2, nextPlayer());
+            reportMain.textContent = "Plus one serve for rolling and two for next player!!"
             gamePlaying = false;
         } else {
-            scores[nextPlayer()] += 5;
-            document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-            document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
-            document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
-            document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspD!";
-            document.querySelector(".reportMain").textContent = "Next player drinks!"
+            rollingDrinks(0, activePlayer);
+            rollingDrinks(5, nextPlayer());
+            reportMain.textContent = "Next player drinks!"
             gamePlaying = false;
         };
         revenge = 2;
@@ -97,7 +78,7 @@ document.querySelector("#swap").addEventListener("click", function () {
                 scores[activePlayer] += 5;
                 document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
                 document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspD!";
-                document.querySelector(".reportMain").textContent = "The rolling player drinks!!"
+                reportMain.textContent = "The rolling player drinks!!"
                 gamePlaying = false;
             } else if (diceResult === 3 || diceResult === 4) {
                 var temp = scores[lastPlayer()];
@@ -107,7 +88,7 @@ document.querySelector("#swap").addEventListener("click", function () {
                 document.querySelector(".track-p" + lastPlayer()).classList.toggle("dinactive");
                 document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
                 document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + &nbspS!";
-                document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the left!"
+                reportMain.textContent = "Rolling player swaps drinks to the left!"
                 gamePlaying = false;
             } else {
                 var temp = scores[nextPlayer()];
@@ -117,7 +98,7 @@ document.querySelector("#swap").addEventListener("click", function () {
                 document.querySelector(".track-p" + nextPlayer()).classList.toggle("dinactive");
                 document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspS!";
                 document.querySelector(".turnScore-p" + nextPlayer()).innerHTML = " + &nbspS!";
-                document.querySelector(".reportMain").textContent = "Rolling player swaps drinks to the right!"
+                reportMain.textContent = "Rolling player swaps drinks to the right!"
                 gamePlaying = false;
             }
         } else {
@@ -135,18 +116,13 @@ document.querySelector("#revenge").addEventListener("click", function () {
         if (gamePlaying) {
             var diceResult = diceRoll();
             if (diceResult >= 1 && diceResult <= 4) {
-                scores[activePlayer] += 1;
-                document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp1";
-                document.querySelector(".reportMain").textContent = "Plus one serve for the rolling player!!"
+                rollingDrinks(1, activePlayer);
+                reportMain.textContent = "Plus one serve for the rolling player!!"
                 gamePlaying = false;
             } else {
-                scores[lastPlayer()] += 5;
-                document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-                document.querySelector(".track-p" + lastPlayer()).classList.toggle("dinactive");
-                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbsp0";
-                document.querySelector(".turnScore-p" + lastPlayer()).innerHTML = " + &nbspD!";
-                document.querySelector(".reportMain").textContent = "Revenge! last turn player drinks!"
+                rollingDrinks(0, activePlayer);
+                rollingDrinks(5, lastPlayer());
+                reportMain.textContent = "Revenge! last turn player drinks!!"
                 gamePlaying = false;
             }
         } else {
@@ -165,19 +141,15 @@ document.querySelector("#chaos").addEventListener("click", function () {
             var diceResult = diceRoll();
             if (diceResult === 1) {
                 for (var i = 0; i < scores.length; i++ ){
-                scores[i] += 5;
-                document.querySelector(".track-p" + i).classList.toggle("dinactive");
-                document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspD!";
+                rollingDrinks(5, i);
             };
-                document.querySelector(".reportMain").textContent = "All players drink!!"
+                reportMain.textContent = "All players drink!!"
                 gamePlaying = false;
             } else if (diceResult === 2 || diceResult === 3) {
                 for (var i = 0; i < scores.length; i++ ){
-                    scores[i] += 1;
-                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
-                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbsp1";
+                    rollingDrinks(1, i);
                 };
-                    document.querySelector(".reportMain").textContent = "Plus one serve for all players!!"
+                    reportMain.textContent = "Plus one serve for all players!!"
                     gamePlaying = false;
             } else if (diceResult === 4) {
                 var temp = scores[0];
@@ -189,7 +161,7 @@ document.querySelector("#chaos").addEventListener("click", function () {
                     document.querySelector(".track-p" + i).classList.toggle("dinactive");
                     document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
                 }
-                document.querySelector(".reportMain").textContent = "All players swap left!!"
+                reportMain.textContent = "All players swap left!!"
                 gamePlaying = false;
             } else if (diceResult === 5) {
                 var temp = scores[0];
@@ -201,19 +173,16 @@ document.querySelector("#chaos").addEventListener("click", function () {
                     document.querySelector(".track-p" + i).classList.toggle("dinactive");
                     document.querySelector(".turnScore-p" + i).innerHTML = " + &nbspS!";
                 };
-                document.querySelector(".reportMain").textContent = "All players swap right!!"
+                reportMain.textContent = "All players swap right!!"
                 gamePlaying = false;
             } else {
                 for (var i = 0; i < scores.length; i++ ){
                     if (i === activePlayer) {
-                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
-                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbsp0";
+                    rollingDrinks(0, i);
                     } else {
-                    scores[i] += 2;
-                    document.querySelector(".track-p" + i).classList.toggle("dinactive");
-                    document.querySelector(".turnScore-p" + i).innerHTML = " + &nbsp2";
+                    rollingDrinks(2, i);
                     };
-                    document.querySelector(".reportMain").textContent = "Plus two serves for all players except rolling player!!"
+                    reportMain.textContent = "Plus two serves for all players except rolling player!!"
                     gamePlaying = false;
                 };
             }
@@ -224,6 +193,19 @@ document.querySelector("#chaos").addEventListener("click", function () {
         nextTurn();
     }
 })
+
+
+// DICE REPETITIVE FUNCTIONS
+
+function rollingDrinks (serve, player) {
+    scores[player] += serve;
+            document.querySelector(".track-p" + player).classList.toggle("dinactive");
+            if (serve === 5){
+                serve = "D!"
+            }
+            document.querySelector(".turnScore-p" + player).innerHTML = " + &nbsp" + serve;
+} 
+
 
 
 // Functions Corner
@@ -304,7 +286,7 @@ function nextTurn () {
         unicorn = true;
         document.querySelector("#chaosIcon").classList.add("perkUp");
     } else {
-        unicorn = false;
+        unicorn = true;
     }
     // Resume gameplay
     gamePlaying = true;
