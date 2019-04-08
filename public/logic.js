@@ -78,7 +78,7 @@ document.querySelector("#swap").addEventListener("click", function () {
             if (diceResult === 1 || diceResult === 2) {
                 scores[activePlayer] += 5;
                 document.querySelector(".track-p" + activePlayer).classList.toggle("dinactive");
-                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + &nbspD!";
+                document.querySelector(".turnScore-p" + activePlayer).innerHTML = " + D!";
                 reportMain.textContent = "The rolling player drinks!!"
                 gamePlaying = false;
             } else if (diceResult === 3 || diceResult === 4) {
