@@ -6,12 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Merienda:400,700" rel="stylesheet">
         <title>Animal Drinking</title>
 </head>
 
 <body>
 
-        <div class="wrapper">
+        <div class="wrapper" id="gameWrap">
 
                 <div class="scoreTrack">
 
@@ -104,6 +105,7 @@
                                                 class="btnIconsLow " id="chaosIcon"></object>
                                 </button>
                         </div>
+
                         
 
                 </div>
@@ -112,7 +114,22 @@
 
         </div>
 
-        <!-- <div class="wrapper"></div> -->
+        <div class="rulesDiv">
+                <button class="btn rulesBtn">Rules</button>
+        </div>
+
+        
+
+        <div class="wrapper noDisplay" id="rulesWrap"> 
+                <div class="rules-title"><strong>Rules</strong></div>
+                <p class="rules-basic">
+                        - Each player has a cup that can hold up to 5 serves.<br>
+                        - The games plays in turns, which flow to the right of the player.<br>
+                        - During each turn a player can choose between 2 types of rolls (passive and agressive)
+                          or any of the 3 perks (Swap Frog, Revenge Gorilla or Uppps Unicorn) if available.<br>
+                        - The player drinks if his cup serve reaches 5 or if he gets a drink command
+                          (case in which he will only drink his current cup, not a full one). </p>
+        </div>
 
 
 

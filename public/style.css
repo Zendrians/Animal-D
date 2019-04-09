@@ -6,7 +6,8 @@
 
 body {
     margin: 1px;
-    background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ACB6E5, #74ebd5); 
+    font-family: 'Merienda', cursive;
 }
 
 .wrapper {
@@ -69,7 +70,7 @@ body {
 .score-p2, .score-p3 {
     margin-top: 15%;
     font-size: 1.5rem;
-    font-weight: 600;
+    /* font-weight: 600; */
 }
 
 .turnTrack {
@@ -107,8 +108,8 @@ body {
     height: 30%;
     width: 100%;
     text-align: center;
-    padding: 5% 5%;
-    margin-bottom: 3%;
+    padding: 3% 5% 6%;
+    margin-bottom: 2%;
 }
 
 .dice {
@@ -120,7 +121,7 @@ body {
     text-align: center;
     font-style: italic;
     font-size: 1rem;
-    margin-bottom: 3%;
+    margin-bottom: 4%;
 }
 
 .buttonsScreen {
@@ -195,6 +196,26 @@ button:active { transform: translateY(2px); }
     filter: invert(82%) sepia(37%) saturate(2444%) hue-rotate(0deg) brightness(103%) contrast(108%);
 }
 
+
+#rulesWrap {
+    padding: 7px;
+}
+
+.rulesDiv {
+    text-align: center;
+    height: 10px;
+    margin-top: 50%;
+    margin-bottom: 30px;
+}
+
+.rulesBtn {
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #cf3721;
+}
+
 .playerFill-0 { background-color: #cf3721; }
 
 .playerFill-1 { background-color: #31A9B8; }
@@ -203,3 +224,15 @@ button:active { transform: translateY(2px); }
 
 .playerFill-3 { background-color: #258039; }
 
+.noDisplay { display: none; }
+
+
+.rules-title {
+    text-align: center;
+    font-size: 1.2rem;
+}
+.rules-basic {
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 0.92rem;
+}

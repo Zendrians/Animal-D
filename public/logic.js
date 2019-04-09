@@ -54,7 +54,7 @@ document.querySelector("#aggressive").addEventListener("click", function () {
         } else if (diceResult === 5) {
             rollingDrinks(1, activePlayer);
             rollingDrinks(2, nextPlayer());
-            reportMain.textContent = "Plus one serve for rolling and two for next player!!"
+            reportMain.textContent = "One serve for rolling and two for next player!!"
             gamePlaying = false;
         } else {
             rollingDrinks(0, activePlayer);
@@ -193,6 +193,13 @@ document.querySelector("#chaos").addEventListener("click", function () {
     } else if (!gamePlaying) {
         nextTurn();
     }
+})
+
+// Rules btn
+
+document.querySelector(".rulesBtn").addEventListener("click", function(){
+    document.querySelector("#gameWrap").classList.toggle("noDisplay");
+    document.querySelector("#rulesWrap").classList.toggle("noDisplay");
 })
 
 
