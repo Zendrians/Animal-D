@@ -244,6 +244,21 @@ button:active { transform: translateY(2px); }
     padding: 3% 3% 0;
 }
 
+.rulesIconBtn {
+    height: 90%;
+    width: 30%;
+    border: none;
+    background-color: #fff;
+}
+
+.icon-display {
+    height: 100%;
+    width: 30%;
+    border: none;
+    background-color: #fff;
+    display: inline-block;
+}
+
 .rules-icons {
     height: 80%;
 }
@@ -263,7 +278,7 @@ button:active { transform: translateY(2px); }
 .icon-name-wrap{
     text-align: center;
     font-weight: bold;
-    margin-top: -2%;
+    /* margin-top: -2%; */
     margin-bottom: 1%;
 }
 

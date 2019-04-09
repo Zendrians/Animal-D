@@ -116,12 +116,6 @@
 
         <!-- RULES -->
 
-        <div class="rulesDiv">
-                <button class="btn rulesBtn">Rules</button>
-        </div>
-
-
-
         <div class="wrapper noDisplay" id="rulesWrap">
                 <div class="rules-title"><strong>Rules</strong></div>
                 <p class="rules-basic">
@@ -133,12 +127,19 @@
                         (case in which he will only drink his current cup, not a full one). </p>
 
                 <div class="roll-display">
-                                <object type="image/svg+xml" data="./SVG/Button icons/arrow.svg"
-                                class="rules-icons" id="arrow-left"></object>
+                                <button class="rulesIconBtn" id="btn-arrow-left">
+                                        <object type="image/svg+xml" data="./SVG/Button icons/arrow.svg"
+                                        class="rules-icons" id="arrow-left"></object>
+                                </button>
+                                <div class="icon-display">
                                 <object type="image/svg+xml" data="./SVG/Rules/0.svg"
                                 class="rules-icons" id="current-rules-icon"></object>
-                                <object type="image/svg+xml" data="./SVG/Button icons/arrow.svg"
-                                class="rules-icons" id="arrow-right"></object>
+                                </div>
+                                <button class="rulesIconBtn" id="btn-arrow-right">
+                                        <object type="image/svg+xml" data="./SVG/Button icons/arrow.svg"
+                                        class="rules-icons" id="arrow-right"></object>
+                                </button>
+                                
                 </div>
                 <div class="icon-name-wrap">
                         Passive
@@ -146,8 +147,8 @@
                 <div class="number-wrapper">
                         <div class="invidual-container">
                                 <div class="number">1</div>
-                                <div class="number-text" id="number-0">
-                                               <p>Rolling player plus two serves</p> 
+                                <div class="number-text" >
+                                               <p id="number-0">Rolling player plus two serves</p> 
                                 </div>
                         </div>
                         <div class="invidual-container">
@@ -187,9 +188,13 @@
 
         </div>
 
+        <div class="rulesDiv">
+                        <button class="btn rulesBtn">Rules</button>
+                </div>
 
 
         <script src="logic.js"></script>
+        <script src="rules.js"></script>
 
 </body>
 
