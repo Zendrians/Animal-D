@@ -10,6 +10,11 @@ body {
     font-family: 'Merienda', cursive;
 }
 
+.main-section {
+    height: 650px;
+    position: relative;
+}
+
 .wrapper {
     width: 360px;
     height: 600px;
@@ -204,7 +209,6 @@ button:active { transform: translateY(2px); }
 .rulesDiv {
     text-align: center;
     height: 10px;
-    margin-top: 50%;
     margin-bottom: 30px;
 }
 
