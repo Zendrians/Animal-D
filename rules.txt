@@ -1,7 +1,7 @@
 Game flow:
 
 - Each player has a cup that can hold up to 5 serves.
-- The games plays in turns, which flow to the right of the player. 
+- The game plays in turns, which flow to the right of the player. 
 - During each turn a player can choose between 2 types of rolls (passive and agressive)
   or any of the 3 perks (Swap Frog, Revenge Gorilla or Uppps Unicorn) if available.
 - The player drinks if his cup serve reaches 5 or if he gets a drink command
@@ -11,8 +11,8 @@ Basic rolls:
 
 Passive:
 
-	1 -> 	 Rolling player + 2 serves
-	2 -> 	 Rolling player + 1 serve
+	1 -> 	 Rolling player plus two serves
+	2 -> 	 Rolling player plus one serve
 	3 - 5 -> No serve, nothing happens
 	6 -> 	 One serve for rolling player and next player 
  

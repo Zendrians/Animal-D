@@ -45,27 +45,27 @@
                 <div class="turnTrack">
 
                         <div class="track track-p0 dinactive">
-                                
+
                                 <object type="image/svg+xml" data="./SVG/RZ/pig.svg" class="subAnimal"
-                                id="subPig"></object>
-                                <div class="turnScore-p0"> + &nbsp-</div>       
+                                        id="subPig"></object>
+                                <div class="turnScore-p0"> + &nbsp-</div>
                         </div>
 
                         <div class="track track-p1 dinactive">
                                 <object type="image/svg+xml" data="./SVG/RZ/fox.svg" class="subAnimal"
-                                id="subFox"></object>
+                                        id="subFox"></object>
                                 <div class="turnScore-p1"> + &nbsp-</div>
                         </div>
 
                         <div class="track track-p2 dinactive">
                                 <object type="image/svg+xml" data="./SVG/RZ/monkey.svg" class="subAnimal"
-                                id="subMonkey"></object>
+                                        id="subMonkey"></object>
                                 <div class="turnScore-p2"> + &nbsp-</div>
                         </div>
 
                         <div class="track track-p3 dinactive">
                                 <object type="image/svg+xml" data="./SVG/RZ/octopus.svg" class="subAnimal"
-                                id="subOctopus"></object>
+                                        id="subOctopus"></object>
                                 <div class="turnScore-p3"> + &nbsp-</div>
                         </div>
 
@@ -80,33 +80,33 @@
                 </div>
 
                 <div class="buttonsScreen">
-                        
+
                         <div class="upperButtons">
                                 <button class="btn topButton playerFill-0" id="passive">
-                                                <object type="image/svg+xml" data="./SVG/Button icons/PeaceE.svg"
-                                                 class="btnIcons"></object>
+                                        <object type="image/svg+xml" data="./SVG/Button icons/PeaceE.svg"
+                                                class="btnIcons"></object>
                                 </button>
                                 <button class="btn topButton playerFill-0" id="aggressive">
-                                                <object type="image/svg+xml" data="./SVG/Button icons/aggresive.svg"
+                                        <object type="image/svg+xml" data="./SVG/Button icons/aggresive.svg"
                                                 class="btnIcons"></object>
                                 </button>
                         </div>
                         <div class="lowerButtons">
                                 <button class="btn lowButton playerFill-0 " id="swap">
-                                                <object type="image/svg+xml" data="./SVG/Button icons/swap.svg"
+                                        <object type="image/svg+xml" data="./SVG/Button icons/swap.svg"
                                                 class="btnIconsLow " id="swapIcon"></object>
                                 </button>
                                 <button class="btn lowButton playerFill-0 " id="revenge">
-                                                <object type="image/svg+xml" data="./SVG/Button icons/revenge.svg"
+                                        <object type="image/svg+xml" data="./SVG/Button icons/revenge.svg"
                                                 class="btnIconsLow " id="revengeIcon"></object>
                                 </button>
                                 <button class="btn lowButton playerFill-0 " id="chaos">
-                                                <object type="image/svg+xml" data="./SVG/Button icons/chaos.svg"
+                                        <object type="image/svg+xml" data="./SVG/Button icons/chaos.svg"
                                                 class="btnIconsLow " id="chaosIcon"></object>
                                 </button>
                         </div>
 
-                        
+
 
                 </div>
 
@@ -114,26 +114,82 @@
 
         </div>
 
+        <!-- RULES -->
+
         <div class="rulesDiv">
                 <button class="btn rulesBtn">Rules</button>
         </div>
 
-        
 
-        <div class="wrapper noDisplay" id="rulesWrap"> 
+
+        <div class="wrapper noDisplay" id="rulesWrap">
                 <div class="rules-title"><strong>Rules</strong></div>
                 <p class="rules-basic">
                         - Each player has a cup that can hold up to 5 serves.<br>
-                        - The games plays in turns, which flow to the right of the player.<br>
+                        - The game plays in turns, which flow to the right of the player.<br>
                         - During each turn a player can choose between 2 types of rolls (passive and agressive)
-                          or any of the 3 perks (Swap Frog, Revenge Gorilla or Uppps Unicorn) if available.<br>
+                        or any of the 3 perks (Swap Frog, Revenge Gorilla or Uppps Unicorn) if available.<br>
                         - The player drinks if his cup serve reaches 5 or if he gets a drink command
-                          (case in which he will only drink his current cup, not a full one). </p>
+                        (case in which he will only drink his current cup, not a full one). </p>
+
+                <div class="roll-display">
+                                <object type="image/svg+xml" data="./SVG/Button icons/arrow.svg"
+                                class="rules-icons" id="arrow-left"></object>
+                                <object type="image/svg+xml" data="./SVG/Rules/0.svg"
+                                class="rules-icons" id="current-rules-icon"></object>
+                                <object type="image/svg+xml" data="./SVG/Button icons/arrow.svg"
+                                class="rules-icons" id="arrow-right"></object>
+                </div>
+                <div class="icon-name-wrap">
+                        Passive
+                </div>
+                <div class="number-wrapper">
+                        <div class="invidual-container">
+                                <div class="number">1</div>
+                                <div class="number-text" id="number-0">
+                                               <p>Rolling player plus two serves</p> 
+                                </div>
+                        </div>
+                        <div class="invidual-container">
+                                        <div class="number">2</div>
+                                        <div class="number-text" >
+                                                <p id="number-1">Rolling player plus one serve</p>
+                                        </div>
+                        </div>
+                        <div class="invidual-container">
+                                        <div class="number">3</div>
+                                        <div class="number-text" >
+                                                <p id="number-2">No serve, nothing happens</p>
+                                        </div>
+                        </div>
+                        <div class="invidual-container">
+                                        <div class="number">4</div>
+                                        <div class="number-text" >
+                                                <p id="number-3">No serve, nothing happens</p>
+                                        </div>
+                        </div>
+                        <div class="invidual-container">
+                                        <div class="number">5</div>
+                                        <div class="number-text" >
+                                                <p id="number-4">No serve, nothing happens</p>
+                                        </div>
+                        </div>
+                        <div class="invidual-container">
+                                        <div class="number">6</div>
+                                        <div class="number-text" >
+                                                <p id="number-5">One serve for rolling player and next player</p> 
+                                        </div>
+                        </div>
+
+                        
+
+                </div>
+
         </div>
 
 
 
-<script src="logic.js"></script>
+        <script src="logic.js"></script>
 
 </body>
 
