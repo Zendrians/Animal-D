@@ -43,7 +43,7 @@ var fullRules = [
 
 {
     icon: "./SVG/Rules/3.svg",
-    name: "Revege Gorilla",
+    name: "Revenge Gorilla",
     roll: [
         "One serve for rolling player",
         "One serve for rolling player",
